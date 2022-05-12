@@ -1,0 +1,9 @@
+﻿<!--here this model represent the movieCardModel which will be used in the partial view which will be used in other views-->
+@model ApplicationCore.Models.MovieCardModel
+
+ <div class="card mb-4">
+    <!--tag helpers like asp-...-->
+    <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id">
+        <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title">
+    </a>
+</div>
