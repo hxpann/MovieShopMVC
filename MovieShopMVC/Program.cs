@@ -1,7 +1,7 @@
 using ApplicationCore.Contracts.Repositories;
 using ApplicationCore.Contracts.Services;
 using Infrastructure.Repositories;
-using Infrastructure.Service;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationCore.Contracts.Services;
 
-namespace Infrastructure.Service
+namespace Infrastructure.Services
 {
     internal class CastService : ICastService
     {

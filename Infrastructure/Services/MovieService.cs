@@ -8,7 +8,7 @@ using ApplicationCore.Contracts.Services;
 using ApplicationCore.Models;
 using Infrastructure.Repositories;
 
-namespace Infrastructure.Service
+namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
