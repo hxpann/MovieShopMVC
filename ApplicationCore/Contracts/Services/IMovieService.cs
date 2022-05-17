@@ -12,5 +12,6 @@ namespace ApplicationCore.Contracts.Services
     {
         // home/index action method
         List<MovieCardModel> GetTop30GrossingMovies();
+        MovieDetailsModel GetMovieDetails(int movieId);
     }   
 }

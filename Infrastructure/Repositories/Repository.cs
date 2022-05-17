@@ -26,17 +26,17 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             throw new NotImplementedException();
         }

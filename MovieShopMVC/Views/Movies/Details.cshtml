@@ -1,0 +1,60 @@
+﻿@model ApplicationCore.Models.MovieDetailsModel;
+
+<div class="container-fluid">
+    <div class="row" style="background-image: url('@Model.BackdropUrl');height: 300px">
+        <div class="col-4 text-center">
+            <img src="@Model.PosterUrl" height= 300px/ alt="@Model.Title">
+        </div>
+        <div class="col-4 text-white">
+            <h2>@Model.Title</h2>
+            <p>@Model.Tagline</p>
+            <span>@Model.RunTime | @Model.ReleaseDate.Value.ToString("yyyy")</span>
+            <ul class="list-inline-item">
+                @foreach (var genre in Model.Genres)
+                {
+                    <li class="badge text-white bg-black">@genre.Name</li>
+                }
+            </ul><br />
+            <span class="badge bg-success text-white">Score!</span>
+            <p>@Model.Overview</p>
+        </div>
+        <div class="col-4 pt-5">
+            <button type="button" class="btn btn-outline border-white text-white mb-2" style="width: 200px">Review</button>
+            <br />
+            <button type="button" class="btn btn-light" style="width: 200px">Buy</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 p-3 mb-2 bg-secondary bg-opacity-10">
+            <div class="row mt-2 mb-5">
+                <h4 style="padding-bottom: 15px; border-bottom:1px solid grey">MOVIE FACTS</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Release Date<span class="badge rounded-pill bg-dark" style="margin-left:10px">@Model.ReleaseDate</span></li>
+                    <li class="list-group-item">Run Time<span class="badge rounded-pill bg-dark" style="margin-left:10px">@Model.RunTime</span></li>
+                    <li class="list-group-item">Box Office<span class="badge rounded-pill bg-dark" style="margin-left:10px">@Model.Revenue</span></li>
+                    <li class="list-group-item">Budget<span class="badge rounded-pill bg-dark" style="margin-left:10px">@Model.Budget</span></li>
+                    <li class="list-group-item">balabala<span class="badge rounded-pill bg-dark" style="margin-left:10px">Dark</span></li>
+                </ul>
+            </div>
+            <div class="row mt-2">
+                <h4 style="padding-bottom: 15px; border-bottom:1px solid grey">TRAILERS</h4>
+                <a href="">Inceptions</a>
+            </div>
+            
+        </div>
+        <div class="col-8 mt-2">
+            <h4>CAST</h4>
+            <ul class="list-group list-group-flush">
+                @foreach (var cast in Model.Casts)
+                {
+                    <li class="list-group-item">
+                            <img src="@cast.ProfilePath" height=60px>
+                            <span style="margin-top: 15px; margin-left:60px;position:absolute">@cast.Name</span>
+                            <span style="margin-top: 15px; margin-left:300px;position:absolute">@cast.Character</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
