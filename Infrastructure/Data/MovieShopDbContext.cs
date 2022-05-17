@@ -40,6 +40,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Genre>(ConfigureGenre);
             modelBuilder.Entity<MovieGenre>(ConfigureMovieGenre);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<Cast>(ConfigureCast);
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
             modelBuilder.Entity<Review>(ConfigureReview);
             modelBuilder.Entity<UserRole>(ConfigureUserRole);
@@ -61,22 +62,28 @@ namespace Infrastructure.Data
             builder.Property(g => g.Name).HasMaxLength(64).IsRequired();
         }
 
+        private void ConfigureCast(EntityTypeBuilder<Cast> builder)
+        {
+            builder.HasKey(c => c.Id);
+            builder.HasIndex(c => c.Name);
+            builder.Property(c => c.Name).HasMaxLength(128);
+            builder.Property(c => c.ProfilePath).HasMaxLength(2084);
+        }
+
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
         {
-            builder.HasKey(mc => new { mc.MovieId, mc.CastId });
+            builder.HasKey(mc => new { mc.MovieId, mc.CastId, mc.Character});
         }
 
         private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> builder)
         {
-            builder.HasKey(mc => new { mc.MovieId, mc.CrewId });
+            builder.HasKey(mc => new { mc.MovieId, mc.CrewId, mc.Department, mc.Job });
         }
 
         private void ConfigureReview(EntityTypeBuilder<Review> builder)
         {
             builder.HasKey(r => new { r.MovieId, r.UserId });
         }
-
-        
 
         private void ConfigureUserRole(EntityTypeBuilder<UserRole> builder)
         {

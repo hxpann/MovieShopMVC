@@ -18,6 +18,7 @@ namespace ApplicationCore.Entities
         //pk and fk
         public int CastId { get; set; }
 
+        //pk
         [MaxLength(450)]
         public string Character { get; set; }
 

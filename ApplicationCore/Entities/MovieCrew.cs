@@ -16,9 +16,11 @@ namespace ApplicationCore.Entities
         //pk and fk
         public int CrewId { get; set; }
 
+        //pk
         [MaxLength(128)]
         public string Department { get; set; }
 
+        //pk
         [MaxLength(128)]
         public string Job { get; set; }
 
