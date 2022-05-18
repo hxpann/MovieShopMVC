@@ -35,7 +35,7 @@ namespace Infrastructure.Services
                 BackdropUrl = movie.BackdropUrl,
                 ImdbUrl = movie.ImdbUrl,
                 TmdbUrl = movie.TmdbUrl,
-                AvgRating = Math.Round(movie.MovieReviews.Average(r => r.Rating),1)
+                AvgRating = Math.Round(movie.MovieReviews.Average(r => r.Rating), 1)
             };
 
 
@@ -47,7 +47,7 @@ namespace Infrastructure.Services
             foreach (var genre in movie.MoviesOfGenre)
             {
                 movieDetails.Genres.Add(new GenreModel { Id = genre.GenreId, Name = genre.Genre.Name });
-            }    
+            }
 
             foreach (var cast in movie.MovieCasts)
             {
@@ -55,7 +55,7 @@ namespace Infrastructure.Services
             }
 
             return movieDetails;
-            
+
         }
 
         public async Task<List<MovieCardModel>> GetTop30GrossingMovies()
@@ -79,5 +79,22 @@ namespace Infrastructure.Services
 
             return movieCards;
         }
+
+        public async Task<PagedResultSet<MovieCardModel>> GetMoviesByGenrePagination(int genreId, int pageSize = 30, int pageNumber = 1)
+        {
+            var pagedMovies = await _movieRepository.GetMoviesByGenres(genreId, pageSize, pageNumber);
+            var movieCards = new List<MovieCardModel>();
+
+            movieCards.AddRange(pagedMovies.Data.Select(m => new MovieCardModel
+            {
+                Id = m.Id,
+                PosterUrl = m.PosterUrl,
+                Title = m.Title
+            }));
+
+            return new PagedResultSet<MovieCardModel>(movieCards, pageNumber, pageSize, pagedMovies.Count);
+
+        }
+
     }
 }

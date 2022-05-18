@@ -23,7 +23,7 @@ namespace MovieShopMVC.Controllers
         //Action Method
         //https://localhost:0/home/index
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // this is hardcoding, tightly coupled , we want loosely coupled
             //var movieService = new MovieService();
@@ -31,7 +31,7 @@ namespace MovieShopMVC.Controllers
 
             // newing up
             // we can have some higher level framework to create instances
-            var movieCards = _movieService.GetTop30GrossingMovies();
+            var movieCards = await _movieService.GetTop30GrossingMovies();
 
             // passing the data from Controller action method to View
             //the index view is return because the method has the same name as the view
