@@ -15,7 +15,7 @@ namespace ApplicationCore.Entities
         public int MovieId { get; set; }
         //pk and fk, principle table is User
         public int UserId { get; set; }
-        public string Rating { get; set; }
+        public decimal Rating { get; set; }
 
         [MaxLength(4096)]
         public string? ReviewText { get; set; }

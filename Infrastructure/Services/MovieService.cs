@@ -53,6 +53,11 @@ namespace Infrastructure.Services
                 movieDetails.Casts.Add(new CastModel { Id = cast.CastId, Name = cast.Cast.Name, Character = cast.Character, ProfilePath = cast.Cast.ProfilePath });
             }
 
+            foreach (var review in movie.MovieReviews)
+            {
+                movieDetails.Reviews.Add(new ReviewModel { MovieId = review.MovieId, AvgRating = review.Rating});
+            }
+
             return movieDetails;
             
         }

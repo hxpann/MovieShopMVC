@@ -35,9 +35,10 @@ namespace Infrastructure.Repositories
             // we need to join Navigation properties
             // Include method in EF will enable us to join with related navigation proerties
             var movie = _dbContext.Movies.Include(m => m.MoviesOfGenre).ThenInclude(m => m.Genre)
-                .Include(m => m.MovieCasts).ThenInclude(m => m.Cast)
-                .Include(m => m.Trailers)
-                 .FirstOrDefault(m => m.Id == id);
+                                         .Include(m => m.MovieCasts).ThenInclude(m => m.Cast)
+                                         .Include(m => m.Trailers)
+                                         .Include(m => m.MovieReviews)
+                                .FirstOrDefault(m => m.Id == id);
             // FirstOrDefault safest one
             // First throws ex when 0 records
             // SingleOrDefault good for 0 or 1

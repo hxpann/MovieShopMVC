@@ -38,7 +38,7 @@ namespace ApplicationCore.Entities
         public int? AccessFailedCount { get; set; }
 
         //Navigation property
-        public ICollection<Review> UsersOfReview { get; set; }
+        public ICollection<Review> UsersReviews {get; set; }
 
         public ICollection<Purchase> UsersOfPurchase { get; set; }
         public ICollection<Favorite> UsersOfFavorite { get; set; }

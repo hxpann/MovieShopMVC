@@ -2,27 +2,103 @@
 
 <div class="container-fluid">
     <div class="row" style="background-image: url('@Model.BackdropUrl');height: 300px">
+
         <div class="col-4 text-center">
             <img src="@Model.PosterUrl" height= 300px/ alt="@Model.Title">
         </div>
-        <div class="col-4 text-white">
+
+        <div class="col-4 text-white pt-2">
             <h2>@Model.Title</h2>
-            <p>@Model.Tagline</p>
-            <span>@Model.RunTime | @Model.ReleaseDate.Value.ToString("yyyy")</span>
+            <span style="font-size:10px;color:grey">@Model.Tagline</span><br />
+            <span style="font-size:15px;color:grey">@Model.RunTime m | @Model.ReleaseDate.Value.ToString("yyyy")</span>
             <ul class="list-inline-item">
                 @foreach (var genre in Model.Genres)
                 {
-                    <li class="badge text-white bg-black">@genre.Name</li>
+                    <li class="badge text-white bg-grey">@genre.Name</li>
                 }
             </ul><br />
-            <span class="badge bg-success text-white">Score!</span>
-            <p>@Model.Overview</p>
+            <span class="badge bg-success text-white mb-2">
+               score??
+            </span><br />
+            <span style="font-size: 13px">@Model.Overview</span>
         </div>
-        <div class="col-4 pt-5">
-            <button type="button" class="btn btn-outline border-white text-white mb-2" style="width: 200px">Review</button>
+
+        <div class="col-4 pt-5" style="text-align:right">            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline border-white text-white mb-2" style="width: 200px" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              REVIEW
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdrop">Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="text-align:left">
+                    <!-- dropdown list to leave review-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger">Rating</button>
+                        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">1</a></li>
+                            <li><a class="dropdown-item" href="#">2</a></li>
+                            <li><a class="dropdown-item" href="#">3</a></li>
+                            <li><a class="dropdown-item" href="#">4</a></li>
+                            <li><a class="dropdown-item" href="#">5</a></li>
+                            <li><a class="dropdown-item" href="#">6</a></li>
+                            <li><a class="dropdown-item" href="#">7</a></li>
+                            <li><a class="dropdown-item" href="#">8</a></li>
+                            <li><a class="dropdown-item" href="#">9</a></li>
+                            <li><a class="dropdown-item" href="#">10</a></li>
+                        </ul>
+                     </div>
+                     <!--text area to write review comments-->
+                     <div class="mb-3">
+                        <label for="reviews" class="form-label">Write Reviews</label>
+                        <textarea class="form-control" id="reviews" rows="3"></textarea>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <br />
-            <button type="button" class="btn btn-light" style="width: 200px">Buy</button>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-light" style="width: 200px" data-bs-toggle="modal" data-bs-target="#PurchaseMod">
+              BUY
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="PurchaseMod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="PurchaseMod">Purchase Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body" style="text-align:left">
+                    <img src="@Model.PosterUrl" height=200px />
+                    <span>Price is: @Model.Price</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Purchase</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
         </div>
+
     </div>
 
     <div class="row">
@@ -39,7 +115,13 @@
             </div>
             <div class="row mt-2">
                 <h4 style="padding-bottom: 15px; border-bottom:1px solid grey">TRAILERS</h4>
-                <a href="">Inceptions</a>
+                <ul class="list-group list-group-flush">
+                @foreach (var trailer in @Model.Trailers)
+                {
+                    <li class="list-group-item"><a href="@trailer.TrailerUrl" style="text-decoration: none; color: black">@trailer.Name</a></li>
+                    
+                }
+            </ul>
             </div>
             
         </div>
@@ -49,9 +131,9 @@
                 @foreach (var cast in Model.Casts)
                 {
                     <li class="list-group-item">
-                            <img src="@cast.ProfilePath" height=60px>
-                            <span style="margin-top: 15px; margin-left:60px;position:absolute">@cast.Name</span>
-                            <span style="margin-top: 15px; margin-left:300px;position:absolute">@cast.Character</span>
+                        <img src="@cast.ProfilePath" height=60px>
+                        <span style="margin-top: 15px; margin-left:60px;position:absolute">@cast.Name</span>
+                        <span style="margin-top: 15px; margin-left:300px;position:absolute">@cast.Character</span>
                     </li>
                 }
             </ul>
