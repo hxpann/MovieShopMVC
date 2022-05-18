@@ -18,9 +18,9 @@ namespace Infrastructure.Services
             _movieRepository = movieRepository;
         }
 
-        public MovieDetailsModel GetMovieDetails(int movieId)
+        public async Task<MovieDetailsModel> GetMovieDetails(int movieId)
         {
-            var movie = _movieRepository.GetById(movieId);
+            var movie = await _movieRepository.GetById(movieId);
             var movieDetails = new MovieDetailsModel() {
                 Id = movie.Id,
                 Budget = movie.Budget,
@@ -34,7 +34,8 @@ namespace Infrastructure.Services
                 RunTime = movie.RunTime,
                 BackdropUrl = movie.BackdropUrl,
                 ImdbUrl = movie.ImdbUrl,
-                TmdbUrl = movie.TmdbUrl
+                TmdbUrl = movie.TmdbUrl,
+                AvgRating = Math.Round(movie.MovieReviews.Average(r => r.Rating),1)
             };
 
 
@@ -53,22 +54,17 @@ namespace Infrastructure.Services
                 movieDetails.Casts.Add(new CastModel { Id = cast.CastId, Name = cast.Cast.Name, Character = cast.Character, ProfilePath = cast.Cast.ProfilePath });
             }
 
-            foreach (var review in movie.MovieReviews)
-            {
-                movieDetails.Reviews.Add(new ReviewModel { MovieId = review.MovieId, AvgRating = review.Rating});
-            }
-
             return movieDetails;
             
         }
 
-        public List<MovieCardModel> GetTop30GrossingMovies()
+        public async Task<List<MovieCardModel>> GetTop30GrossingMovies()
         {
             // call the movierepository class
             // get the entity class data and map them in to model class data
             // var movieRepo = new MovieRepository();
             // var movies = movieRepo.GetTop30GrossingMovies();
-            var movies = _movieRepository.GetTop30GrossingMovies();
+            var movies = await _movieRepository.GetTop30GrossingMovies();
             var movieCards = new List<MovieCardModel>();
 
             foreach (var movie in movies)

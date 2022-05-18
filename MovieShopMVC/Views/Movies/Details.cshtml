@@ -3,11 +3,11 @@
 <div class="container-fluid">
     <div class="row" style="background-image: url('@Model.BackdropUrl');height: 300px">
 
-        <div class="col-4 text-center">
-            <img src="@Model.PosterUrl" height= 300px/ alt="@Model.Title">
+        <div class="col-xl-4 col-sm-3 text-center">
+            <img src="@Model.PosterUrl" height= 300px alt="@Model.Title">
         </div>
 
-        <div class="col-4 text-white pt-2">
+        <div class="col-xl-4 col-sm-5 text-white pt-2">
             <h2>@Model.Title</h2>
             <span style="font-size:10px;color:grey">@Model.Tagline</span><br />
             <span style="font-size:15px;color:grey">@Model.RunTime m | @Model.ReleaseDate.Value.ToString("yyyy")</span>
@@ -18,12 +18,12 @@
                 }
             </ul><br />
             <span class="badge bg-success text-white mb-2">
-               score??
+               @Model.AvgRating
             </span><br />
             <span style="font-size: 13px">@Model.Overview</span>
         </div>
 
-        <div class="col-4 pt-5" style="text-align:right">            
+        <div class="col-xl-4 col-sm-4 pt-5" style="text-align:right">            
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline border-white text-white mb-2" style="width: 200px" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
               REVIEW
@@ -102,7 +102,7 @@
     </div>
 
     <div class="row">
-        <div class="col-4 p-3 mb-2 bg-secondary bg-opacity-10">
+        <div class="col-xl-4 col-lg-4 p-3 mb-2 bg-secondary bg-opacity-10">
             <div class="row mt-2 mb-5">
                 <h4 style="padding-bottom: 15px; border-bottom:1px solid grey">MOVIE FACTS</h4>
                 <ul class="list-group list-group-flush">
@@ -125,8 +125,8 @@
             </div>
             
         </div>
-        <div class="col-8 mt-2">
-            <h4>CAST</h4>
+        <div class="col-xl-8 col-lg-8 mt-2 p-3 mb-2">
+            <h4 style="padding-bottom: 15px; border-bottom:1px solid grey">CAST</h4>
             <ul class="list-group list-group-flush">
                 @foreach (var cast in Model.Casts)
                 {

@@ -11,7 +11,7 @@ namespace ApplicationCore.Contracts.Services
     public interface IMovieService
     {
         // home/index action method
-        List<MovieCardModel> GetTop30GrossingMovies();
-        MovieDetailsModel GetMovieDetails(int movieId);
+        Task<List<MovieCardModel>> GetTop30GrossingMovies();
+        Task<MovieDetailsModel> GetMovieDetails(int movieId);
     }   
 }

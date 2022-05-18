@@ -13,7 +13,6 @@ namespace ApplicationCore.Models
             Genres = new List<GenreModel>();
             Trailers = new List<TrailerModel>();
             Casts = new List<CastModel>();
-            Reviews = new List<ReviewModel>();
         }
         public int Id { get; set; }
         public string? Title { get; set; }
@@ -30,9 +29,10 @@ namespace ApplicationCore.Models
         public int? RunTime { get; set; }
         public decimal? Price { get; set; }
 
+        public decimal AvgRating { get; set; }
+
         public List<GenreModel> Genres { get; set; }
         public List<CastModel> Casts { get; set; }
         public List<TrailerModel> Trailers { get; set; }
-        public List<ReviewModel> Reviews { get; set; }
     }
 }

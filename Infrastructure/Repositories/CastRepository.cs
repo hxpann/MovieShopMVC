@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories
         {
         }
 
-        public override Cast GetById(int id)
+        public override async Task<Cast> GetById(int id)
         {
             var cast = _dbContext.Casts.Include(c => c.MovieCasts).ThenInclude(c => c.Movie)
                 .SingleOrDefault(c => c.Id == id);

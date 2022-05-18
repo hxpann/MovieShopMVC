@@ -11,7 +11,7 @@ namespace MovieShopMVC.Controllers
         {
             _movieService = movieService;
         }
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             // go to movies table and get the movie details by ID
             // connect to SQL server and execute the SQL query
@@ -23,7 +23,8 @@ namespace MovieShopMVC.Controllers
             // get the mode data from the services and send the data to the views (M)
             // Onion architecure or N-Layer architetcure
 
-            var movie = _movieService.GetMovieDetails(id);
+            //await I/O operation
+            var movie = await _movieService.GetMovieDetails(id);
             return View(movie);
         }
     }

@@ -10,6 +10,6 @@ namespace ApplicationCore.Contracts.Repositories
     //deal with Entity classes:Entity is the data
     public interface IMovieRepository : IRepository<Movie>
     {
-        List<Movie> GetTop30GrossingMovies();
+        Task<List<Movie>> GetTop30GrossingMovies();
     }
 }
