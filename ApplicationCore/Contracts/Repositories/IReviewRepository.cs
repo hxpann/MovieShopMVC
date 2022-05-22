@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Contracts.Repositories
 {
-    public interface IPurchaseRepository : IRepository<Purchase>
+    public interface IReviewRepository: IRepository<Review>
     {
-        public Task<Purchase> GetPurchaseDetails(int userId, int movieId);
-        public Task<List<Purchase>> GetMoviesPurchasedByUser(int userId);
+        Task<List<Review>> GetAllReviewsByUser(int id);
     }
 }

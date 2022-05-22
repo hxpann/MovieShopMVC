@@ -20,10 +20,13 @@ namespace ApplicationCore.Models
 
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
-        public int TotalPages { get; set; }
         public long Count { get; set; }
+        public IEnumerable<TEntity> Data { get; }
+        public int TotalPages { get; set; }
+
+        //if want, the following two lines can be created in UI
         public bool HasPreviousPage => PageIndex > 1;
         public bool HasNextPage => PageIndex < TotalPages;
-        public IEnumerable<TEntity> Data { get; set; }
+        
     }
 }

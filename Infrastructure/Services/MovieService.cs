@@ -85,6 +85,7 @@ namespace Infrastructure.Services
             var pagedMovies = await _movieRepository.GetMoviesByGenres(genreId, pageSize, pageNumber);
             var movieCards = new List<MovieCardModel>();
 
+            // convert a list of movies to movieCards, like foreach add from all data of movies from pagedMovies
             movieCards.AddRange(pagedMovies.Data.Select(m => new MovieCardModel
             {
                 Id = m.Id,
@@ -92,6 +93,7 @@ namespace Infrastructure.Services
                 Title = m.Title
             }));
 
+            // the pagedMovies.Count is from the PagedResultSet<Movie> which is the pagedMovies type, it's the last parameter of this type
             return new PagedResultSet<MovieCardModel>(movieCards, pageNumber, pageSize, pagedMovies.Count);
 
         }

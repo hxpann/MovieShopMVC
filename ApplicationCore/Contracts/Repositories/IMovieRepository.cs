@@ -18,5 +18,6 @@ namespace ApplicationCore.Contracts.Repositories
         // Or Tuple
         //Task<(IEnumerable<Movie>, int totalCount, int totalPages)> GetMoviesByGenres(int genreId, int pageSize =30, int page = 1);
         Task<PagedResultSet<Movie>> GetMoviesByGenres(int genreId, int pageSize = 30, int page = 1);
+
     }
 }

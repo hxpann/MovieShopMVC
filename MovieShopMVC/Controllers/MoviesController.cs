@@ -6,7 +6,6 @@ namespace MovieShopMVC.Controllers
     public class MoviesController : Controller
     {
         private readonly IMovieService _movieService;
-
         public MoviesController(IMovieService movieService)
         {
             _movieService = movieService;
@@ -15,7 +14,7 @@ namespace MovieShopMVC.Controllers
         {
             // go to movies table and get the movie details by ID
             // connect to SQL server and execute the SQL query
-            // select * from Movie where id =2;
+            // select * from Movie where id => 
             // get the movies entity (object)
             // Repositories => Data access Logic
             // Services => Business Logic

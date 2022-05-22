@@ -53,10 +53,10 @@ namespace Infrastructure.Repositories
         public async Task<PagedResultSet<Movie>> GetMoviesByGenres(int genreId, int pageSize = 30, int pageNumber = 1)
         {
             // get total movies count for that genres
-            var totalMoviesCount = await _dbContext.MovieGenres.Where(m => m.GenreId == genreId).CountAsync();
+            var totalMoviesCountByGenre = await _dbContext.MovieGenres.Where(m => m.GenreId == genreId).CountAsync();
 
             // get the actual movies from MovieGenre and Movie Table
-            if (totalMoviesCount == 0)
+            if (totalMoviesCountByGenre == 0)
             {
                 throw new Exception("No Movies found for that genre");
             }
@@ -69,9 +69,11 @@ namespace Infrastructure.Repositories
                 })
                 .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
 
-            var pagedMovies = new PagedResultSet<Movie>(movies, pageNumber, pageSize, totalMoviesCount);
+            var pagedMovies = new PagedResultSet<Movie>(movies, pageNumber, pageSize, totalMoviesCountByGenre);
 
             return pagedMovies;
         }
+
+        
     }
 }

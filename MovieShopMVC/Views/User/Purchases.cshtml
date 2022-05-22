@@ -1,0 +1,17 @@
+﻿@model List<ApplicationCore.Models.MovieCardModel>
+
+<div class="rounded">
+    <div class="container-fluid">
+        <div class="row">
+            <!--Model represent the model data collection sent to view
+                dynamic type does not know what until run-->
+            @foreach (var movieCard in Model)
+            {
+                <div class="col-6 col-lg-3 col-sm-4 col-xl-2">
+                   <partial name="_MovieCardPartial" model="movieCard" />
+                </div>
+                
+            }
+        </div>
+    </div>
+</div>
