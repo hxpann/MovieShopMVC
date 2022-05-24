@@ -9,6 +9,6 @@ namespace ApplicationCore.Contracts.Repositories
 {
     public interface IReviewRepository: IRepository<Review>
     {
-        Task<List<Review>> GetAllReviewsByUser(int id);
+        Task<Review> GetReviewsByUser(int userId, int movieId);
     }
 }

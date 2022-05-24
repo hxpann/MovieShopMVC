@@ -29,22 +29,18 @@ namespace Infrastructure.Services
 
         //Reviews
        
-        public async Task<List<ReviewRequestModel>> GetAllReviewsByUser(int id)
+        public async Task<ReviewRequestModel> GetReviewsByUser(int userId,int movieId)
         {
-           var reviews = await _reviewRepository.GetAllReviewsByUser(id);
-           var allReviews = new List<ReviewRequestModel>();
-
-           foreach (var review in reviews)
+           var reviews = await _reviewRepository.GetReviewsByUser(userId, movieId);
+           var reviewsRequest = new ReviewRequestModel
            {
-               allReviews.Add(new ReviewRequestModel
-               {
-                   MovieId = review.MovieId,
-                   UserId = review.UserId,
-                   Rating = review.Rating,
-                   ReviewText = review.ReviewText
-               });
-           }
-            return allReviews;
+                MovieId = movieId,
+                UserId = userId,
+                Rating = reviews.Rating,
+                ReviewText = reviews.ReviewText
+           };
+
+           return reviewsRequest;
         }
         public async Task<bool> AddMovieReview(ReviewRequestModel reviewRequest)
         {

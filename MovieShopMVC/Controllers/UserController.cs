@@ -61,7 +61,8 @@ namespace MovieShopMVC.Controllers
         public async Task<IActionResult> Favorites()
         {
             var userId = _currentUser.UserId;
-            return View();
+            var movieCards = _userService.GetAllFavoritesForUser(userId);
+            return View(movieCards);
         }
 
         public async Task<IActionResult> Reviews()
